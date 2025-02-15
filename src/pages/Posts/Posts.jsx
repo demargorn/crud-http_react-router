@@ -28,9 +28,11 @@ const Posts = () => {
 
    return (
       <>
-         {posts.map((p) => (
-            <Post key={p.id} text={p.content} />
-         ))}
+         {posts
+            .toSorted((a, b) => b.id - a.id)
+            .map((p) => (
+               <Post key={p.id} created={p.created} message={p.content} />
+            ))}
       </>
    );
 };

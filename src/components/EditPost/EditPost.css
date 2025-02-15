@@ -13,6 +13,10 @@
    display: block;
 }
 
+.div-input {
+   margin-bottom: 5px;
+}
+
 .edit-card-text {
    font-size: 18px;
 }
