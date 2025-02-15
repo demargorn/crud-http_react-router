@@ -1,0 +1,10 @@
+.button-component {
+   color: white;
+   border: none;
+   border-radius: 3px;
+   width: 120px;
+   margin-block: 8px;
+}
+
+/* red: #B04546 */
+/* blue: #4469AE */

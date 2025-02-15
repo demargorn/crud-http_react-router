@@ -1,0 +1,47 @@
+.card {
+   width: 32rem;
+}
+
+.edit-card-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background: #f5f6f7;
+}
+
+.edit-card-title {
+   display: block;
+}
+
+.edit-card-text {
+   font-size: 18px;
+}
+
+.edit-card-img {
+   border-radius: 50%;
+   margin-right: 5rem;
+}
+
+.edit-card-footer {
+   display: flex;
+   justify-content: start;
+   flex-wrap: wrap;
+   gap: 1rem;
+}
+
+.edit-card-footer-btn {
+   width: 14.4rem;
+   text-align: start;
+   color: #51555b;
+   background: #f5f6f7;
+}
+
+hr {
+   margin: 0;
+}
+
+.edit-card-bottom {
+   display: flex;
+   justify-content: end;
+   padding: 0px 10px;
+}
