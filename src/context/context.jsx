@@ -9,9 +9,11 @@ const ContextProvider = ({ children }) => {
    const fetchData = async () => {
       try {
          const response = await fetch(`${URL}/posts`);
+
          if (!response.ok) {
             throw new Error('fetch error');
          }
+         
          const data = await response.json();
          setPosts(data);
       } catch (error) {

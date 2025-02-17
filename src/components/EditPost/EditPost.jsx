@@ -1,29 +1,44 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import useAppContext from '../../hooks/useAppContext';
 import Button from '../Button/Button';
 import './EditPost.css';
 
 const EditPost = () => {
-   const [value, setValue] = useState('');
+   const [value, setValue] = useState(''); // состояние input
+   const { id } = useParams();
    const { URL } = useAppContext();
    const navigate = useNavigate();
 
-   const handlerClose = () => navigate('/');
+   const handlerClose = () => navigate(-1);
 
    const handlerChangeValue = (e) => setValue(e.target.value);
+
+   const fetchInfoData = async () => {
+      try {
+         const response = await fetch(`${URL}/posts/${id}`);
+
+         if (!response.ok) {
+            throw new Error('fetch error');
+         }
+         const data = await response.json();
+         setValue(data.post.content);
+      } catch (error) {
+         console.log(error);
+      }
+   };
 
    const handlerFormSubmit = async (e) => {
       e.preventDefault();
 
       try {
-         await fetch(`${URL}/posts`, {
-            method: 'POST',
+         await fetch(`${URL}/posts/${id}`, {
+            method: 'PUT',
             headers: {
                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-               id: 1,
+               id: id,
                content: value,
             }),
          });
@@ -31,20 +46,19 @@ const EditPost = () => {
          console.log(error);
       }
 
-      setValue('');
+      fetchInfoData();
       handlerClose();
    };
+
+   useEffect(() => {
+      fetchInfoData();
+   }, []);
 
    return (
       <div className='card'>
          <div className='card-header edit-card-header'>
             <h5 className='card-title edit-card-title'>Редактировать публикацию</h5>
-            <button
-               type='submit'
-               aria-label='Close'
-               onClick={() => navigate('/')}
-               className='btn-close'
-            />
+            <button type='submit' aria-label='Close' onClick={handlerClose} className='btn-close' />
          </div>
          <form className='create-post-body' onSubmit={handlerFormSubmit}>
             <div className='div-input'>

@@ -6,7 +6,6 @@ import Layout from './layout/Layout';
 import Posts from './pages/Posts/Posts';
 import CreatePost from './components/CreatePost/CreatePost';
 import ViewPost from './components/ViewPost/ViewPost';
-import Post from './components/Post/Post';
 import EditPost from './components/EditPost/EditPost';
 import './index.css';
 
@@ -29,7 +28,7 @@ const router = createBrowserRouter([
             element: <CreatePost />,
          },
          {
-            path: '/posts/edit',
+            path: '/posts/:id/edit',
             element: <EditPost />,
          },
          {
