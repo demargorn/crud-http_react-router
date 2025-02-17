@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from 'react-router';
-import { URL } from '../../pages/Posts/Posts';
 import Button from '../Button/Button';
+import useAppContext from '../../hooks/useAppContext';
 
 const ViewPost = () => {
    const { id } = useParams();
+   const { URL } = useAppContext();
    const navigate = useNavigate();
-
-   console.log(id);
 
    const fetchDeleteData = async (id) => {
       try {
@@ -33,7 +32,7 @@ const ViewPost = () => {
             </div>
          </div>
          <div className='card-body'>
-            <h4 className='card-title'>gjrfskfjb</h4>
+            <h4 className='card-title'>{}</h4>
          </div>
          <div className='post-bottom'>
             <button className='post-button'>Нравится</button>

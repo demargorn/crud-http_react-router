@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Button from '../Button/Button';
-import { URL } from '../../pages/Posts/Posts';
 import './CreatePost.css';
+import useAppContext from '../../hooks/useAppContext';
 
 const CreatePost = () => {
    const [value, setValue] = useState('');
+   const { URL } = useAppContext();
    const navigate = useNavigate();
 
    const handlerClose = () => navigate('/');
@@ -29,7 +30,6 @@ const CreatePost = () => {
       } catch (error) {
          console.log(error);
       }
-
       setValue('');
       handlerClose();
    };

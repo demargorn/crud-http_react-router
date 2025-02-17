@@ -1,37 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useAppContext from '../../hooks/useAppContext';
 import Post from '../../components/Post/Post';
 import './Posts.css';
 
-export const URL = 'http://localhost:7070';
-
 const Posts = () => {
-   const [posts, setPosts] = useState([]); // посты
+   const { posts, fetchData } = useAppContext();
 
    useEffect(() => {
-      (async function () {
-         try {
-            const response = await fetch(`${URL}/posts`);
-
-            if (!response.ok) {
-               throw new Error('fetch error');
-            }
-
-            const data = await response.json();
-            setPosts(data);
-         } catch (error) {
-            console.log(error);
-         }
-      })();
+      fetchData();
    }, []);
-
-   console.log(posts);
 
    return (
       <>
          {posts
             .toSorted((a, b) => b.id - a.id)
             .map((p) => (
-               <Post key={p.id} created={p.created} message={p.content} />
+               <Post key={p.id} postId={p.id} created={p.created} message={p.content} />
             ))}
       </>
    );

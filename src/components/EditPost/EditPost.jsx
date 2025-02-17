@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import useAppContext from '../../hooks/useAppContext';
 import Button from '../Button/Button';
-import { URL } from '../../pages/Posts/Posts';
 import './EditPost.css';
 
 const EditPost = () => {
    const [value, setValue] = useState('');
+   const { URL } = useAppContext();
    const navigate = useNavigate();
 
    const handlerClose = () => navigate('/');

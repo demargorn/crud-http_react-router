@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router';
 import './Post.css';
 
-const Post = ({ message, created }) => {
+const Post = ({ postId, message, created }) => {
+   const navigate = useNavigate();
+
    function timeAgo(timestamp) {
       const now = Date.now();
       const seconds = Math.floor((now - timestamp) / 1000);
@@ -23,13 +26,13 @@ const Post = ({ message, created }) => {
 
    return (
       <article className='card post'>
-         <div className='card-header post-header'>
+         <button onClick={() => navigate(`/posts/${postId}`)} className='card-header post-header'>
             <img src='/avatar.svg' className='card-img-top avatar' alt='...' />
             <div className='card-text-div'>
                <p className='card-text-name'>Pavel Durov</p>
                <p className='card-text-main'>пользователь * {timeAgo(created)}</p>
             </div>
-         </div>
+         </button>
          <div className='card-body'>
             <h4 className='card-title'>{message}</h4>
          </div>

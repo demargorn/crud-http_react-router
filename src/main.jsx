@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import { ContextProvider } from './context/context';
 import Layout from './layout/Layout';
 import Posts from './pages/Posts/Posts';
 import CreatePost from './components/CreatePost/CreatePost';
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
          },
          {
             path: '/posts/:id',
-            element: <Post />,
+            element: <ViewPost />,
          },
          {
             path: '/posts/new',
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
    <StrictMode>
-      <RouterProvider router={router} />
+      <ContextProvider>
+         <RouterProvider router={router} />
+      </ContextProvider>
    </StrictMode>
 );
